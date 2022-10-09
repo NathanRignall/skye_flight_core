@@ -1,0 +1,31 @@
+with "config/skye_flight_core_config.gpr";
+with "skye_flight_bsp.gpr";
+
+project Skye_Flight_Core is
+
+   for Target use "arm-eabi";
+   for Runtime ("Ada") use "light-cortex-m0p";
+
+   for Source_Dirs use ("src/**", "config/");
+   for Object_Dir use "obj/" & Skye_Flight_Core_Config.Build_Profile;
+   for Create_Missing_Dirs use "True";
+   for Exec_Dir use "bin";
+   for Main use ("skye_flight_core.adb");
+
+   package Linker is
+        for Switches ("Ada") use Skye_Flight_Bsp.Linker_Switches;
+    end Linker;
+
+   package Compiler is
+      for Default_Switches ("Ada") use Skye_Flight_Core_Config.Ada_Compiler_Switches;
+   end Compiler;
+
+   package Binder is
+      for Switches ("Ada") use ("-Es"); --  Symbolic traceback
+   end Binder;
+
+   package Install is
+      for Artifacts (".") use ("share");
+   end Install;
+
+end Skye_Flight_Core;

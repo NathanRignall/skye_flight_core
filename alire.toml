@@ -1,0 +1,15 @@
+name = "skye_flight_core"
+description = "Shiny new flight controller"
+version = "0.1.0-dev"
+
+authors = ["Nathan Rignall"]
+maintainers = ["Nathan Rignall <rignallnathan@gmail.com>"]
+maintainers-logins = ["NathanRignall"]
+
+executables = ["skye_flight_core"]
+
+[[depends-on]]
+skye_flight_bsp = "0.1.0"
+
+[[pins]]
+skye_flight_bsp = { path='../skye_flight_bsp' }

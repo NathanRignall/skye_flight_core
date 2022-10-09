@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Remote Pico Debug",
+            "type":"cortex-debug",
+            "cwd": "${workspaceRoot}",
+            "executable": "./bin/skye_flight_core",
+            "request": "launch",
+            "servertype": "external",
+            "gdbPath" : "arm-none-eabi-gdb",
+            "gdbTarget": ":3333",
+            "svdFile": "./rp2040.svd",
+            "postRestartCommands": [
+                "break main",
+                "continue"
+            ],
+            "preLaunchTask": "build",
+        }
+    ]
+}
