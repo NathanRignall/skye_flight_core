@@ -93,16 +93,24 @@ package body Hardware is
     begin
 
         if Toggle then
+
             Toggle := False;
+
             Servo1.Set_Angle (180);
             Servo2.Set_Angle (180);
+            Buzzer.Set_Power(True);
+            Buzzer.Set_Frequency(2000);
+
         else
+
             Toggle := True;
+
             Servo1.Set_Angle (0);
             Servo2.Set_Angle (0);
+            Buzzer.Set_Power(False);
+            Buzzer.Set_Frequency(1000);
+            
         end if;
-
-        null;
 
     end Schedule;
 

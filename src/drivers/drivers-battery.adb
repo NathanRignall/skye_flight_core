@@ -1,7 +1,3 @@
-with RP.Device;
-
-with HAL;
-use type HAL.UInt12;
 
 package body Drivers.Battery is
 

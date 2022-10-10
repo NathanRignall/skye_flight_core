@@ -1,4 +1,3 @@
-with RP.Device;
 
 with HAL;
 use type HAL.UInt12;

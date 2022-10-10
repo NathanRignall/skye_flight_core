@@ -1,5 +1,3 @@
-with RP.Device;
-
 with HAL;
 use type HAL.UInt16;
 
@@ -56,14 +54,18 @@ package body Drivers.Motor is
 
     procedure Set_Speed (This : in out Motor; Speed : Speed_Type) is
     begin
+
         This.Speed := Speed;
         This.Update;
+
     end Set_Speed;
 
     procedure Set_Mode (This : in out Motor; Mode : Mode_Type) is
     begin
+
         This.Mode := Mode;
         This.Update;
+        
     end Set_Mode;
 
 end Drivers.Motor;
