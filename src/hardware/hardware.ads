@@ -6,6 +6,7 @@ with RP.SPI;
 with Skye_Flight;
 
 with Drivers.BMP384;
+with Drivers.W25;
 with Drivers.Buzzer;
 with Drivers.Servo;
 with Drivers.Motor;
@@ -20,12 +21,16 @@ package Hardware is
     Primary_Bus   : RP.I2C_Master.I2C_Master_Port renames RP.Device.I2CM_0;
     Secondary_Bus : RP.I2C_Master.I2C_Master_Port renames RP.Device.I2CM_1;
 
-    Flash   : RP.SPI.SPI_Port renames RP.Device.SPI_0;
-    SD_Card : RP.SPI.SPI_Port renames RP.Device.SPI_1;
+    Flash_Bus   : RP.SPI.SPI_Port renames RP.Device.SPI_0;
+    SD_Card_Bus : RP.SPI.SPI_Port renames RP.Device.SPI_1;
 
     BMP384 :
        Drivers.BMP384.BMP384
           (Port => Primary_Bus'Access, Address => 2#1110_1100#);
+
+    W25 :
+       Drivers.W25.W25
+          (Port => Flash_Bus'Access, CS => Skye_Flight.FLASH_CS'Access);
 
     Buzzer :
        Drivers.Buzzer.Buzzer (Control_Point => Skye_Flight.BUZZER'Access);

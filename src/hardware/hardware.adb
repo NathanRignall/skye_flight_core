@@ -44,8 +44,6 @@ package body Hardware is
            (RP.GPIO.Output, RP.GPIO.Floating, RP.GPIO.SPI);
         Skye_Flight.FLASH_MISO.Configure
            (RP.GPIO.Output, RP.GPIO.Floating, RP.GPIO.SPI);
-        Skye_Flight.FLASH_CS.Configure
-           (RP.GPIO.Output, RP.GPIO.Floating, RP.GPIO.SPI);
 
         Console.Configure (Config => (Baud => 115_200, others => <>));
 
@@ -59,14 +57,14 @@ package body Hardware is
            (Baudrate     => 100_000,
             Address_Size => RP.I2C_Master.Address_Size_7b);
 
-        Flash.Configure
+        Flash_Bus.Configure
            (Config =>
                (Role      => RP.SPI.Master, Baud => 10_000_000,
                 Data_Size => HAL.SPI.Data_Size_8b,
                 Polarity  => RP.SPI.Active_Low, Phase => RP.SPI.Rising_Edge,
                 Blocking  => True, Loopback => False));
 
-        SD_Card.Configure
+        Flash_Bus.Configure
            (Config =>
                (Role      => RP.SPI.Master, Baud => 10_000_000,
                 Data_Size => HAL.SPI.Data_Size_8b,
@@ -74,6 +72,7 @@ package body Hardware is
                 Blocking  => True, Loopback => False));
 
         BMP384.Initialize;
+        W25.Initialize;
         Buzzer.Initialize;
         Servo1.Initialize;
         Servo2.Initialize;
